@@ -1,27 +1,42 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import Grass from "../constans/design/grass";
 import Grassmini from "../constans/design/grassmini";
 import GrassminiTwo from "../constans/design/grassminiTwo";
-import { Image } from "react-native";
 import { StyleSheet } from "react-native";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
+
+
+
+
 
 const HomePage = () => {
   return (
     <View style={styles.container}>
-      <Text style={{ color: "blue" }}>hellööö basliyoruzzz</Text>
-      <View style={styles.grassContainer }>
+      <Text style={styles.text}>Merhaba!</Text>
+      <Text style={styles.text2}>Dünyamıza Hoşgeldin</Text>
+      <View style={styles.grassContainer}>
         <Grass />
       </View>
       <View style={styles.grassMini}>
-      <Grassmini />
+        <Grassmini />
       </View>
       <View style={styles.grassMiniContainer}>
-        <GrassminiTwo/>
+        <GrassminiTwo />
       </View>
-      <View style={styles.image}>
-      <Image source={require('../images/lionn.png')} />
-      </View>
+
+      <TouchableOpacity style={styles.button}>
+        <Text style={[styles.buttonText]}>
+          Hayvanlar Dünyası
+        </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.buttonTwo}>
+        <Text style={[styles.buttonText]}>
+          Eşleştirme Oyunu
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -32,28 +47,60 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+ 
   grassContainer: {
     position: "absolute",
     bottom: 0,
-    zIndex: 2,
+    zIndex: 1,
   },
   grassMini: {
     position: "absolute",
     bottom: 287,
-    left: 120,
+    left: 57,
   },
   grassMiniContainer: {
     position: "absolute",
-    right: 116 ,
+    right: 50,
     bottom: 260,
   },
-  image:{
-    zIndex:1,
-    bottom: 35,
-    height:400,
-    width: 400,
+  button: {
+    backgroundColor: "#FFF",
+    width: 219,
+    height: 66,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 3,
+    borderRadius: 25,
+    position: "absolute",
+    bottom: 174,
+  },
+  buttonTwo: {
+    backgroundColor: "#FFF",
+    width: 219,
+    height: 66,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 3,
+    borderRadius: 25,
+    position: "absolute",
+    bottom: 74,
+    
 
-
+  },
+  buttonText: {
+    fontSize: 23,
+  },
+  text:{
+    position: "absolute",
+    top: 70,
+    fontSize: 45,
+    color: "#fff"
+  },
+  text2:{
+    position: "absolute",
+    top: 140,
+    fontSize: 30,
+    color:"#fff",
 
   }
 });
