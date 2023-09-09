@@ -5,7 +5,7 @@ import { Svg, Path } from "react-native-svg";
 const GrassminiTwo = () => {
   return (
     <Svg
-      width="156"
+      width="153"
       height="118"
       viewBox="0 0 149 110"
       fill="none"
