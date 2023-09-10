@@ -1,8 +1,8 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
-import Grass from "../constans/design/grass";
-import Grassmini from "../constans/design/grassmini";
-import GrassminiTwo from "../constans/design/grassminiTwo";
+import Grass from "../components/design/grass";
+import Grassmini from "../components/design/grassmini";
+import GrassminiTwo from "../components/design/grassminiTwo";
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
@@ -17,6 +17,7 @@ const HomePage = () => {
       <View style={styles.container}>
         <Text style={styles.text}>Merhaba!</Text>
         <Text style={styles.text2}>Dünyamıza Hoşgeldin</Text>
+        
         <View style={styles.grassContainer}>
           <Grass />
         </View>
