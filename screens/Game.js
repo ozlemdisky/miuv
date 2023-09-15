@@ -5,25 +5,29 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
-  Button,
+  Image,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { data } from "../constans/data";
 import { Audio } from "expo-av";
+import Grasst from "../components/design/grasst";
+
+
+
 
 const playSound = async (soundSource) => {
-  // ses dosyasını yüklmen ve çalma
   const soundObject = new Audio.Sound();
   try {
-    await soundObject.loadAsync(soundSource); // ses dosyasının yolunu doğru şekilde ayarlama
+    await soundObject.loadAsync(soundSource);
     await soundObject.playAsync();
   } catch (error) {
     console.error("Ses çalma hatası:", error);
   }
 };
+
 const PlayCard = ({ item, onPress, isCorrect, isPressed }) => {
   return (
-    <View style={styles.butonContainer}>
+    <View style={styles.buttonContainer}>
       <TouchableOpacity
         style={[
           styles.button,
@@ -34,13 +38,11 @@ const PlayCard = ({ item, onPress, isCorrect, isPressed }) => {
         ]}
         onPress={() => {
           onPress(isCorrect);
-          playSound(item.sound); // butona tıklandığında sesi çal
+          playSound(item.sound);
         }}
-        disabled={isPressed !== null} // buton tekrar tıklanamaz
+        disabled={isPressed !== null}
       >
-        <Text style={{ color: isPressed !== null ? "white" : "black" }}>
-          {item.image}
-        </Text>
+        <Image source={item.image} style={{ width: 100, height: 100 }} />
       </TouchableOpacity>
     </View>
   );
@@ -51,46 +53,32 @@ const GameScreen = () => {
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
-  // data'yı karıştırma ve doğru cevabı ayarlama işlemi
   const shuffleData = (count) => {
     const shuffled = [...data];
-
-    // Fisher-Yates Shuffle
-    //  Bu algoritma, bir dizinin veya listesinin elemanlarını rastgele karıştırmak için kullanılır.
-    // Kodunuzda, geriye doğru bir döngü içinde elemanları yer değiştirerek shuffled dizisini karıştırıyor.
-    // Bu algoritma, her bir elemanın karıştırılmış dizide herhangi bir pozisyona eşit bir olasılıkla gelmesini sağlar,
-    //  bu nedenle elemanların sırasını rastgele hale getirmek için adil bir yöntemdir.
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
 
-    // rastgele doğru cevabı ayarla
     const randomIndex = Math.floor(Math.random() * count);
-
     setCorrectAnswer(randomIndex);
 
     return shuffled.slice(0, count);
   };
 
-  // ekran açıldığında otomatik olarak veriyi al
   useEffect(() => {
     const initialData = shuffleData(4);
     setShuffledData(initialData);
   }, []);
 
-  // butona tıklandığında doğru veya yanlış olduğunu kontrol etme işlemi
   const handleButtonPress = (isCorrect) => {
     if (isCorrect) {
-      // doğru butona tıklandığında yeşil yap ve yeni soru hazırla
       setSelectedAnswer(true);
     } else {
-      // yanlış butona tıklandığında kırmızı yap
       setSelectedAnswer(false);
     }
   };
 
-  // yeni veriyi getirme işlemi
   const handleNextButtonPress = () => {
     setSelectedAnswer(null);
     const newData = shuffleData(4);
@@ -98,8 +86,15 @@ const GameScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#D4E2FE" }}>
-      <View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#D4E2FE",
+      }}
+    >
+      <View style={{ justifyContent: "center", marginTop: 100, flex: 1 }}>
         <FlatList
           data={shuffledData}
           keyExtractor={(item) => item.image}
@@ -117,49 +112,93 @@ const GameScreen = () => {
       </View>
 
       {selectedAnswer !== null && (
-        // <Button title="Yeni Veri Getir" onPress={handleNextButtonPress} />
-        <TouchableOpacity>Yeni veri ver</TouchableOpacity>
+        <TouchableOpacity
+          style={styles.nextButton}
+          onPress={handleNextButtonPress}
+        >
+          <Text style={{fontFamily: "Gluten_300Light"}}>Yeni Veri Getir</Text>
+        </TouchableOpacity>
       )}
+
       <TouchableOpacity
         style={styles.playButton}
         onPress={() => playSound(shuffledData[correctAnswer].sound)}
       >
-        <Text style={styles.buttonText}>Ses Oynatma</Text>
+        <Text style={styles.buttonText }>PLAY</Text>
+        <Image
+          style={styles.playImage}
+          source={require("../images/seses.png")}
+        />
       </TouchableOpacity>
+      <Grasst style={styles.grass} />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 100,
+  buttonContainer: {
+    padding: 15,
+    marginTop: 20,
+    marginBottom: 10,
   },
-  butonContainer: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+
   button: {
     width: 128,
     height: 115,
     borderRadius: 25,
-    elevation: 4,
+    elevation: 10,
+    shadowRadius: 5,
     justifyContent: "center",
     alignItems: "center",
+    zIndex: 3,
+  },
+  nextButton: {
+    backgroundColor: "white",
+    justifyContent: "center",
+    position: "absolute",
+    alignItems: "center",
+    bottom: 150,
+    width: 110,
+    height: 50,
+
+    borderRadius: 20,
+    zIndex: 2,
   },
   playButton: {
-    flex: 1,
-    
+    justifyContent: "center",
+    alignItems: "center",
     paddingVertical: 5,
     position: "absolute",
-    bottom: 20,
-    alignItem: "center",
+    bottom: 50,
     backgroundColor: "#fff",
     borderRadius: 25,
     width: 300,
     height: 70,
+    zIndex: 1,
+   
+
   },
+  playImage: {
+    width: 90,
+    height: 90,
+    alignSelf: "stretch",
+    position: "absolute",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+  },
+  buttonText: {
+    fontFamily:  "Gluten_500Medium",
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "black",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    paddingLeft: 50,
+    
+  },
+  buluts: {},
 });
 
 export default GameScreen;

@@ -1,9 +1,17 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "react-native";
 import { Audio } from "expo-av";
 import { useState, useEffect } from "react";
+
+const { width } = Dimensions.get("window");
 
 const Animal = ({ data }) => {
   const [sound, setSound] = useState();
@@ -29,9 +37,9 @@ const Animal = ({ data }) => {
         style={[styles.button, { backgroundColor: data.renk }]}
         onPress={playSound}
       >
-        <Image style={styles.image} source={data.image} />
+        <Image style={styles.image} source={data.image} resizeMode="center" />
 
-        <Text>{data.name}</Text>
+        <Text style={styles.buttonText}>{data.name}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -45,8 +53,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    marginLeft: 10,
-    width: 284,
+    marginLeft: 25,
+    width: width - 25,
     height: 200,
   },
   button: {
@@ -58,12 +66,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 25,
     marginBottom: 24,
+    position: "relative",
   },
   image: {
     height: 120,
     width: 120,
     zIndex: 2,
     position: "absolute",
-    left: -55,
+    left: -50,
+  },
+  buttonText: {
+    fontFamily: "Gluten_600SemiBold",
+    fontSize: 40,
+    color: "white",
   },
 });

@@ -90,12 +90,14 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 23,
     color: "#3F4A5F",
+    fontFamily: "Gluten_200ExtraLight",
   },
   text: {
     position: "absolute",
     top: 30,
     fontSize: 45,
     color: "#fff",
+    fontFamily: "Gluten_600SemiBold",
   },
   text2: {
     position: "absolute",
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#fff",
     zIndex: 3,
+    fontFamily:"",
   },
   image: {
     top: -30,

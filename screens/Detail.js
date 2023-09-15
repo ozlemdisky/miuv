@@ -15,7 +15,6 @@ const DetailScreen = () => {
     <SafeAreaView
       style={{
         flex: 1,
-
         backgroundColor: "#D4E2FE",
       }}
     >
@@ -27,7 +26,7 @@ const DetailScreen = () => {
         <FlatList
           data={data}
           renderItem={({ item, index }) => <Animal key={index} data={item} />}
-          style={{}}
+          style={{ flex: 1 }}
         />
       </View>
     </SafeAreaView>
