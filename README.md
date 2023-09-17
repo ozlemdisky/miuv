@@ -1,46 +1,48 @@
-## Okul Öncesi Çocuklar İçin Hayvan Sesleri Uygulaması
+## Preschool Animal Sounds App
 
-Bu mobil uygulama, farklı hayvanların resimlerini ve bunların ses efektlerini içerir. Kullanıcılar, resme dokunduklarında ilgili hayvanın sesini duyabilir ve hayvanları tanıyabilirler
+This mobile application includes pictures of various animals and their sound effects. Users can touch the images to hear the sounds of the corresponding animals and learn about them.
 
-## Nasıl Çalıştırılır
+<img src="https://i.hizliresim.com/8my2gbu.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/a26xcxc.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/s0p61sd.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/5d4lb0k.png" alt="Açıklama" width="250" height="500">
 
-Bu uygulamayı çalıştırmak için aşağıdaki adımları izleyebilirsiniz:
+##   How to Run
 
-1. Bu projeyi bilgisayarınıza klonlayın veya ZIP dosyasını indirip çıkarın.
+To run this application, you can follow the steps below:
 
-2. Proje klasörüne terminal üzerinden gidin:
+1. Clone this project to your computer or download and extract the ZIP file.
+
+2. Navigate to the project folder in your terminal:
 
 ```bash
 cd hayvan-sesleri-uygulamasi
 ```
 
-3. Gerekli bağımlılıkları yüklemek için aşağıdaki komutu çalıştırın:
+3. Install the necessary dependencies by running the following command:
 
 ```bash
 npm install
 ```
 
-4. Uygulamayı başlatmak için aşağıdaki komutu çalıştırın:
+4. Start the application by running the following command:
 
 ```sql
 npm start
 ```
 
-5. Uygulamayı bir Android veya iOS cihazında çalıştırmak için Expo Go veya benzeri bir mobil uygulama kullanabilirsiniz. Expo Go uygulamasını indirin ve QR kodunu tarayarak uygulamayı görüntüleyin.
+5. To run the application on an Android or iOS device, you can use Expo Go or a similar mobile app. Download the Expo Go app and scan the QR code to view the application.
 
-## Kullanılan Teknolojiler
+## Technologies Used
 
 - React Native
 - Expo
 - Expo Audio
 
-## Veriler
+## Data
 
-Uygulama, her hayvan için aşağıdaki verileri içerir:
+The application includes the following data for each animal:
 
-- Hayvanın adı (name)
-- Ses efekti dosyasının yolu (sound)
-- Hayvanın resminin yolu (image)
-- Düğmenin rengi (renk)
+- Name of the animal (name)
+- Path to the sound effect file (sound)
+- Path to the image to the animala (image)
+- Button color (renk)
 
-Veriler data.js dosyasında bulunur.
+The data is located in the `data.js`
