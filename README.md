@@ -14,7 +14,7 @@ To run this application, you can follow the steps below:
 2. Navigate to the project folder in your terminal:
 
 ```bash
-cd hayvan-sesleri-uygulamasi
+cd miuv
 ```
 
 3. Install the necessary dependencies by running the following command:
