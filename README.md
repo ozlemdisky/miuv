@@ -2,7 +2,8 @@
 
 This mobile application includes pictures of various animals and their sound effects. Users can touch the images to hear the sounds of the corresponding animals and learn about them.
 
-<img src="https://i.hizliresim.com/8my2gbu.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/a26xcxc.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/s0p61sd.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/5d4lb0k.png" alt="Açıklama" width="250" height="500">
+<img src="https://i.hizliresim.com/8my2gbu.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/a26xcxc.png" alt="Açıklama" width="250" height="500">
+<img src="https://i.hizliresim.com/s0p61sd.png" alt="Açıklama" width="250" height="500"><img src="https://i.hizliresim.com/5d4lb0k.png" alt="Açıklama" width="250" height="500">
 
 ##   How to Run
 
