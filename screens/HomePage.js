@@ -8,10 +8,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 
 const HomePage = () => {
+    // React Navigation kütüphanesinden useNavigation hook'unu kullanarak gezinme işlevini etkinelştiriyoruz
   const navigation = useNavigation();
-
-
-
   return (
     <SafeAreaView style={{backgroundColor: "#A5C3FF rgba(165, 195, 255, 0.90)", flex:1}}>
       <View style={styles.container}>
@@ -105,7 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "#fff",
     zIndex: 3,
-    fontFamily:"",
+    fontFamily:"Gluten_500Medium",
   },
   image: {
     top: -30,

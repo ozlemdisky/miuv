@@ -17,7 +17,7 @@ const Animal = ({ data }) => {
   const [sound, setSound] = useState();
 
   useEffect(() => {
-    // Load the sound when the component mounts
+    // Komponent oluşturulduğunda ses dosyasını yükle
     async function loadSound() {
       const { sound } = await Audio.Sound.createAsync(data.sound);
       setSound(sound);
@@ -26,6 +26,7 @@ const Animal = ({ data }) => {
     loadSound();
   }, [data.sound]);
 
+  // Ses dosyasını çalmak için kullanılan fonksiyon
   const playSound = async () => {
     if (sound) {
       await sound.replayAsync(); // Play the loaded sound

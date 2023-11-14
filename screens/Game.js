@@ -9,21 +9,21 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { data } from "../constans/data";
-import { Audio } from "expo-av";
+import { Audio } from "expo-av"; // Ses çalmak için Expo'nun Audio modülü
 import Grasst from "../components/design/grasst";
 
-
-
-
+// Ses çalmak için kullanılacak fonksiyon
 const playSound = async (soundSource) => {
   const soundObject = new Audio.Sound();
   try {
-    await soundObject.loadAsync(soundSource);
-    await soundObject.playAsync();
+    await soundObject.loadAsync(soundSource); // Ses kaynağını yükleme
+    await soundObject.playAsync(); // Ses çalma
   } catch (error) {
     console.error("Ses çalma hatası:", error);
   }
 };
+
+// Her bir hayvan kartını temsil eden bileşen
 
 const PlayCard = ({ item, onPress, isCorrect, isPressed }) => {
   return (
@@ -32,15 +32,16 @@ const PlayCard = ({ item, onPress, isCorrect, isPressed }) => {
         style={[
           styles.button,
           {
+            ////
             backgroundColor:
               isPressed !== null ? (isCorrect ? "green" : "red") : "white",
           },
         ]}
         onPress={() => {
           onPress(isCorrect);
-          playSound(item.sound);
+          playSound(item.sound); // butona tıklandığında sesi çal
         }}
-        disabled={isPressed !== null}
+        disabled={isPressed !== null} // buton tekrar tıklanamaz
       >
         <Image source={item.image} style={{ width: 100, height: 100 }} />
       </TouchableOpacity>
@@ -48,28 +49,33 @@ const PlayCard = ({ item, onPress, isCorrect, isPressed }) => {
   );
 };
 
+// Oyun ekranı bileşeni
 const GameScreen = () => {
-  const [shuffledData, setShuffledData] = useState([]);
+  const [shuffledData, setShuffledData] = useState([]); //setShuffledData, React Hook kullanımı sırasında bir durum değişkenini güncellemek için kullanılan bir işlevdir.
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
+  // Verileri karıştırmak için kullanılacak fonksiyon
   const shuffleData = (count) => {
-    const shuffled = [...data];
+    const shuffled = [...data]; // Verileri kopyalama
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Verileri karıştırın
     }
 
     const randomIndex = Math.floor(Math.random() * count);
-    setCorrectAnswer(randomIndex);
+    setCorrectAnswer(randomIndex); // Doğru cevabı belirle
 
-    return shuffled.slice(0, count);
+    return shuffled.slice(0, count); // İstenen sayıda kart verisi döndür
   };
 
+  // Oyun başladığında verileri karıştır
   useEffect(() => {
     const initialData = shuffleData(4);
     setShuffledData(initialData);
   }, []);
+
+  // Kartlardan birine tıklandığında tetiklenecek fonksiyon
 
   const handleButtonPress = (isCorrect) => {
     if (isCorrect) {
@@ -79,8 +85,9 @@ const GameScreen = () => {
     }
   };
 
+  // Sonraki verileri getirme işlemi
   const handleNextButtonPress = () => {
-    setSelectedAnswer(null);
+    setSelectedAnswer(null); // Seçilen cevabı sıfırla
     const newData = shuffleData(4);
     setShuffledData(newData);
   };
@@ -116,7 +123,9 @@ const GameScreen = () => {
           style={styles.nextButton}
           onPress={handleNextButtonPress}
         >
-          <Text style={{fontFamily: "Gluten_300Light"}}>Yeni Veri Getir</Text>
+          <Text style={{ color: "#2A303A", fontFamily: "Gluten_300Light" }}>
+            Yeni Veri Getir
+          </Text>
         </TouchableOpacity>
       )}
 
@@ -124,7 +133,7 @@ const GameScreen = () => {
         style={styles.playButton}
         onPress={() => playSound(shuffledData[correctAnswer].sound)}
       >
-        <Text style={styles.buttonText }>PLAY</Text>
+        <Text style={[styles.buttonText, {}]}>PLAY</Text>
         <Image
           style={styles.playImage}
           source={require("../images/seses.png")}
@@ -160,7 +169,6 @@ const styles = StyleSheet.create({
     bottom: 150,
     width: 110,
     height: 50,
-
     borderRadius: 20,
     zIndex: 2,
   },
@@ -175,28 +183,21 @@ const styles = StyleSheet.create({
     width: 300,
     height: 70,
     zIndex: 1,
-   
-
   },
   playImage: {
     width: 90,
     height: 90,
-    alignSelf: "stretch",
-    position: "absolute",
-    justifyContent: "center",
     alignItems: "center",
-    paddingLeft: 20,
+    marginRight: 180,
   },
   buttonText: {
-    fontFamily:  "Gluten_500Medium",
+    fontFamily: "Gluten_800ExtraBold",
     fontSize: 40,
-    fontWeight: "bold",
-    color: "black",
+    color: "#2A303A",
     justifyContent: "center",
     alignItems: "center",
     position: "absolute",
-    paddingLeft: 50,
-    
+    paddingLeft: 60,
   },
   buluts: {},
 });
